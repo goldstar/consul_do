@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'consul_do'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: consul-do OPTIONS"
+  opts.on("-k", "--key KEY", "Coordination key"){ |v| options['host'] = v }
+  opts.on("-h", "--consul-host HOST", "Consul hostname"){ |v| options['host'] = v }
+  opts.on("-p", "--consul-port PORT", "Consul port"){ |v| options['port'] = v}
+  opts.on("--http_proxy http://HOST:PORT", "Use supplied proxy instead of ENV "){ |v| ENV['http_proxy'] = v }
+end.parse!
+
+consul = ConsulDo::Elect.new("testing", {'host' => options['host'], 'port' => options['port']})
+
+consul.get_lock
+leader_session = consul.get_key['Session']
+
+if (consul.get_session_info(leader_session)['Node'] != consul.get_session_info(consul.session)['Node'])
+  consul.delete_session
+  exit 1
+end
+
+exit 0
