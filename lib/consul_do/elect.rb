@@ -9,7 +9,7 @@ module ConsulDo
       port = ConsulDo.config.opts['port']
       @base_url = "http://#{host}:#{port}"
     end
-    
+
     def get_key
       url = "#{@base_url}/v1/kv/service/#{@key}/leader"
       response = ConsulDo.http_get(url)
@@ -21,14 +21,16 @@ module ConsulDo
       response = ConsulDo.http_get(url)
       ConsulDo.log "get_session_info", JSON.parse(response.body).first
     end
-    
+
     def create_session
       url = "#{@base_url}/v1/session/create"
       response = ConsulDo.http_put(url, {"name" => "#{@key}_session"})
-      unless response.kind_of?(Net::HTTPSuccess)
+      case response
+      when Net::HTTPSuccess
+        ConsulDo.log "create_session", JSON.parse(response.body)['ID']
+      when Net::HTTPError
         raise "Could not create session: #{response.code} - #{response.message} (#{response.body})"
       end
-      ConsulDo.log "create_session", JSON.parse(response.body)['ID']
     end
 
     def session
