@@ -2,17 +2,35 @@
 
 require 'consul_do'
 require 'optparse'
+require 'pry'
 
+# parse options
 options = {}
-OptionParser.new do |opts|
+opt_parse = OptionParser.new do |opts|
   opts.banner = "Usage: consul-do OPTIONS"
-  opts.on("-k", "--key KEY", "Coordination key"){ |v| options['host'] = v }
+  opts.on("-k", "--key KEY", "Coordination key"){ |v| options['key'] = v }
   opts.on("-h", "--consul-host HOST", "Consul hostname"){ |v| options['host'] = v }
-  opts.on("-p", "--consul-port PORT", "Consul port"){ |v| options['port'] = v}
+  opts.on("-p", "--consul-port PORT", "Consul port"){ |v| options['port'] = v }
   opts.on("--http_proxy http://HOST:PORT", "Use supplied proxy instead of ENV "){ |v| ENV['http_proxy'] = v }
-end.parse!
+  opts.on("-v", "--verbose", "Consul port"){ |v| VERBOSE = v }
+end
+opt_parse.parse!
 
-consul = ConsulDo::Elect.new("testing", {'host' => options['host'], 'port' => options['port']})
+# defaults
+VERBOSE ||= false
+
+# required options
+if !(%w{key} - options.keys).empty?
+  puts opt_parse
+  exit 2
+end
+
+# determine leader status and exit
+if VERBOSE
+  ConsulDo.log "Options", options
+end
+
+consul = ConsulDo::Elect.new("testing", {'host' => options['host'], 'port' => options['port'], 'verbose' => options['verbose']})
 
 consul.get_lock
 leader_session = consul.get_key['Session']
