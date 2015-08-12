@@ -1,22 +1,17 @@
 require "consul_do/version"
 require "consul_do/elect"
+require "consul_do/config"
 require 'net/http'
 require 'json'
 
 module ConsulDo
-  def self.proxy
-    proxy = ENV['http_proxy'] || ENV['HTTP_PROXY']
-    begin
-      URI.parse(proxy)
-    rescue URI::InvalidURIError
-      URI::Generic.new(nil,nil,nil,nil,nil,nil,nil,nil,nil)
-    end
-
+  def self.config
+    @config ||= Config.new
   end
 
   def self.http_client
-    if proxy.host && proxy.port
-      log "http_client", Net::HTTP.Proxy(proxy.host, proxy.port, proxy.user, proxy.password)
+    if config.proxy.host && config.proxy.port
+      log "http_client", Net::HTTP.Proxy(config.proxy.host, config.proxy.port, config.proxy.user, config.proxy.password)
     else
       log "http_client", Net::HTTP
     end
@@ -33,7 +28,7 @@ module ConsulDo
   end
 
   def self.log(msg, retval)
-    puts [msg,retval.to_s].join(":\n  ") if VERBOSE
+    puts [msg,retval.to_s].join(":\n  ") if config.opts['verbose']
     retval
   end
 end

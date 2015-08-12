@@ -3,12 +3,11 @@ require 'json'
 module ConsulDo
   class Elect
 
-    def initialize(key, options = {})
-      @key = key
-      host = options['host'] || "localhost"
-      port = options['port'] || "8500"
+    def initialize()
+      @key = ConsulDo.config.opts['key']
+      host = ConsulDo.config.opts['host']
+      port = ConsulDo.config.opts['port']
       @base_url = "http://#{host}:#{port}"
-      @verbose = options['verbose']
     end
     
     def get_key
@@ -20,7 +19,6 @@ module ConsulDo
     def get_session_info(session_id)
       url = "#{@base_url}/v1/session/info/#{session_id}"
       response = ConsulDo.http_get(url)
-
       ConsulDo.log "get_session_info", JSON.parse(response.body).first
     end
     
@@ -44,19 +42,22 @@ module ConsulDo
 
     def get_lock
       url = "#{@base_url}/v1/kv/service/#{@key}/leader?acquire=#{session}"
-      ConsulDo.log "get_lock", ConsulDo.http_put(url, {'updated' => Time.now})
+      response = ConsulDo.http_put(url, {'updated' => Time.now})
+      @has_lock = true if response.body == "true"
     end
 
     def is_leader?
-        get_lock
-        leader_session = get_key['Session']
+      leader_session = get_key['Session']
+      if (leader_session &&
+          (@has_lock || get_session_info(leader_session)['Node'] == get_session_info(session)['Node']))
+        ConsulDo.log "is_leader?", true
+      else 
+        ConsulDo.log "is_leader?", false
+       end
+    end
 
-        # NOTE in the executable we can check this retval against #session to determine wether or not to #delete_session
-        if (get_session_info(leader_session)['Node'] == get_session_info(session)['Node'])
-          leader_session
-        else
-          false
-        end
+    def cleanup
+      delete_session unless @has_lock
     end
 
   end
