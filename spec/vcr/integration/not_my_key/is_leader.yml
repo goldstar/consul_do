@@ -1,0 +1,139 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8500/v1/kv/service/key_name/leader
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '223340'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Thu, 13 Aug 2015 23:45:35 GMT
+      Content-Length:
+      - '213'
+    body:
+      encoding: UTF-8
+      string: '[{"CreateIndex":223340,"ModifyIndex":223340,"LockIndex":1,"Key":"service/key_name/leader","Flags":0,"Value":"eyJ1cGRhdGVkIjoiMjAxNS0wOC0xMyAxNDo0MjoyOSAtMDcwMCJ9","Session":"1529c017-429c-81f7-12a5-4dc5b2a75d30"}]'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:35 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/info/1529c017-429c-81f7-12a5-4dc5b2a75d30
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '223659'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Thu, 13 Aug 2015 23:45:35 GMT
+      Content-Length:
+      - '203'
+    body:
+      encoding: UTF-8
+      string: '[{"CreateIndex":223339,"ID":"1529c017-429c-81f7-12a5-4dc5b2a75d30","Name":"key_name_session","Node":"consul-host2","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:35 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/create
+    body:
+      encoding: UTF-8
+      string: '{"name":"key_name_session"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 13 Aug 2015 23:45:35 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"ID":"7eddc57a-8af2-264d-4682-de4577ff5404"}'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:35 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/info/7eddc57a-8af2-264d-4682-de4577ff5404
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '223660'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Thu, 13 Aug 2015 23:45:35 GMT
+      Content-Length:
+      - '203'
+    body:
+      encoding: UTF-8
+      string: '[{"CreateIndex":223660,"ID":"7eddc57a-8af2-264d-4682-de4577ff5404","Name":"key_name_session","Node":"consul-host2","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:35 GMT
+recorded_with: VCR 2.9.3

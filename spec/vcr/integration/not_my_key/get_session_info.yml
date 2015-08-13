@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/create
+    body:
+      encoding: UTF-8
+      string: '{"name":"key_name_session"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 13 Aug 2015 23:45:34 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"ID":"24f813bf-9fd0-aa89-3a68-9347409af83c"}'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:34 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/info/24f813bf-9fd0-aa89-3a68-9347409af83c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '223652'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Thu, 13 Aug 2015 23:45:34 GMT
+      Content-Length:
+      - '203'
+    body:
+      encoding: UTF-8
+      string: '[{"CreateIndex":223652,"ID":"24f813bf-9fd0-aa89-3a68-9347409af83c","Name":"key_name_session","Node":"consul-host2","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:34 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/destroy/24f813bf-9fd0-aa89-3a68-9347409af83c
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 13 Aug 2015 23:45:34 GMT
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: 'true'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:34 GMT
+recorded_with: VCR 2.9.3

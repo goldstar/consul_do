@@ -12,7 +12,7 @@ module ConsulDo
 
     def parse
       options = {}
-      opt_parse = OptionParser.new do |opts|
+      OptionParser.new do |opts|
         opts.banner = "Usage: consul-do OPTIONS"
         opts.on("-k", "--key KEY", "Coordination key"){ |v| options['key'] = v }
         opts.on("-h", "--consul-host HOST", "Consul hostname"){ |v| options['host'] = v }
@@ -20,6 +20,7 @@ module ConsulDo
         opts.on("--http_proxy http://HOST:PORT", "Use supplied proxy instead of ENV "){ |v| options['http_proxy'] = v }
         opts.on("-v", "--verbose", "Consul port"){ |v| options['verbose'] = v}
       end.parse!
+      #raise "foo"
       options = merge_defaults(options)
       validate(options)
     end

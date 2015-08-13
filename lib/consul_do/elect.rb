@@ -45,21 +45,25 @@ module ConsulDo
     def get_lock
       url = "#{@base_url}/v1/kv/service/#{@key}/leader?acquire=#{session}"
       response = ConsulDo.http_put(url, {'updated' => Time.now})
-      @has_lock = true if response.body == "true"
+      @session_has_lock = true if response.body == "true"
     end
 
     def is_leader?
       leader_session = get_key['Session']
       if (leader_session &&
-          (@has_lock || get_session_info(leader_session)['Node'] == get_session_info(session)['Node']))
+          (session_has_lock? || get_session_info(leader_session)['Node'] == get_session_info(session)['Node']))
         ConsulDo.log "is_leader?", true
       else 
         ConsulDo.log "is_leader?", false
-       end
+      end
     end
 
     def cleanup
-      delete_session unless @has_lock
+      delete_session unless session_has_lock?
+    end
+
+    def session_has_lock?
+      @session_has_lock
     end
 
   end

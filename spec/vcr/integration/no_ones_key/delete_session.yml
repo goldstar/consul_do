@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/create
+    body:
+      encoding: UTF-8
+      string: '{"name":"key_name_session"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 13 Aug 2015 23:45:36 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"ID":"b5bb0a31-2a5f-4f92-cef5-36fca23c3537"}'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/create
+    body:
+      encoding: UTF-8
+      string: '{"name":"key_name_session"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 13 Aug 2015 23:45:36 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"ID":"fc45a4f7-f8ef-b34e-cf00-5aa039674c97"}'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/destroy/fc45a4f7-f8ef-b34e-cf00-5aa039674c97
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 13 Aug 2015 23:45:36 GMT
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: 'true'
+    http_version: 
+  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
+recorded_with: VCR 2.9.3
