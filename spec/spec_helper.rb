@@ -7,7 +7,13 @@ require 'support/vcr_setup'
 RSpec.configure do |config|
   config.include ConstantsHelper
 
+  config.before(:each) do
+    overwrite_constant :ARGV, []
+    ConsulDo.configure!{}
+  end
+
   config.after(:each) do
     reset_all_constants
   end
+
 end

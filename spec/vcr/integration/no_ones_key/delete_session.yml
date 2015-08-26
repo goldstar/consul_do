@@ -5,7 +5,7 @@ http_interactions:
     uri: http://localhost:8500/v1/session/create
     body:
       encoding: UTF-8
-      string: '{"name":"key_name_session"}'
+      string: '{"name":"consul-do_no_ones_key_session"}'
     headers:
       Content-Type:
       - application/json
@@ -23,48 +23,17 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 13 Aug 2015 23:45:36 GMT
+      - Wed, 26 Aug 2015 00:16:08 GMT
       Content-Length:
       - '45'
     body:
       encoding: UTF-8
-      string: '{"ID":"b5bb0a31-2a5f-4f92-cef5-36fca23c3537"}'
+      string: '{"ID":"d4dd664e-acd7-a337-6069-c9899653b5f0"}'
     http_version: 
-  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:08 GMT
 - request:
     method: put
-    uri: http://localhost:8500/v1/session/create
-    body:
-      encoding: UTF-8
-      string: '{"name":"key_name_session"}'
-    headers:
-      Content-Type:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 13 Aug 2015 23:45:36 GMT
-      Content-Length:
-      - '45'
-    body:
-      encoding: UTF-8
-      string: '{"ID":"fc45a4f7-f8ef-b34e-cf00-5aa039674c97"}'
-    http_version: 
-  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
-- request:
-    method: put
-    uri: http://localhost:8500/v1/session/destroy/fc45a4f7-f8ef-b34e-cf00-5aa039674c97
+    uri: http://localhost:8500/v1/session/destroy/d4dd664e-acd7-a337-6069-c9899653b5f0
     body:
       encoding: UTF-8
       string: 'null'
@@ -85,12 +54,47 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 13 Aug 2015 23:45:36 GMT
+      - Wed, 26 Aug 2015 00:16:08 GMT
       Content-Length:
       - '4'
     body:
       encoding: UTF-8
       string: 'true'
     http_version: 
-  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:08 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/info/d4dd664e-acd7-a337-6069-c9899653b5f0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '242088'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Wed, 26 Aug 2015 00:16:08 GMT
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: 'null'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:08 GMT
 recorded_with: VCR 2.9.3

@@ -5,7 +5,7 @@ http_interactions:
     uri: http://localhost:8500/v1/session/create
     body:
       encoding: UTF-8
-      string: '{"name":"key_name_session"}'
+      string: '{"name":"consul-do_no_ones_key_session"}'
     headers:
       Content-Type:
       - application/json
@@ -23,17 +23,17 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 13 Aug 2015 23:45:35 GMT
+      - Wed, 26 Aug 2015 00:16:07 GMT
       Content-Length:
       - '45'
     body:
       encoding: UTF-8
-      string: '{"ID":"e604bcef-9dec-c24d-376b-3902c8e62862"}'
+      string: '{"ID":"f6481fe5-b55e-c234-0ac4-67e8b07eb4ba"}'
     http_version: 
-  recorded_at: Thu, 13 Aug 2015 23:45:35 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:08 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/e604bcef-9dec-c24d-376b-3902c8e62862
+    uri: http://localhost:8500/v1/session/info/f6481fe5-b55e-c234-0ac4-67e8b07eb4ba
     body:
       encoding: US-ASCII
       string: ''
@@ -52,23 +52,23 @@ http_interactions:
       Content-Type:
       - application/json
       X-Consul-Index:
-      - '223661'
+      - '242085'
       X-Consul-Knownleader:
       - 'true'
       X-Consul-Lastcontact:
       - '0'
       Date:
-      - Thu, 13 Aug 2015 23:45:35 GMT
+      - Wed, 26 Aug 2015 00:16:07 GMT
       Content-Length:
-      - '203'
+      - '216'
     body:
       encoding: UTF-8
-      string: '[{"CreateIndex":223661,"ID":"e604bcef-9dec-c24d-376b-3902c8e62862","Name":"key_name_session","Node":"consul-host2","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+      string: '[{"CreateIndex":242085,"ID":"f6481fe5-b55e-c234-0ac4-67e8b07eb4ba","Name":"consul-do_no_ones_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
     http_version: 
-  recorded_at: Thu, 13 Aug 2015 23:45:35 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:08 GMT
 - request:
     method: put
-    uri: http://localhost:8500/v1/session/destroy/e604bcef-9dec-c24d-376b-3902c8e62862
+    uri: http://localhost:8500/v1/session/destroy/f6481fe5-b55e-c234-0ac4-67e8b07eb4ba
     body:
       encoding: UTF-8
       string: 'null'
@@ -89,12 +89,12 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 13 Aug 2015 23:45:36 GMT
+      - Wed, 26 Aug 2015 00:16:08 GMT
       Content-Length:
       - '4'
     body:
       encoding: UTF-8
       string: 'true'
     http_version: 
-  recorded_at: Thu, 13 Aug 2015 23:45:36 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:08 GMT
 recorded_with: VCR 2.9.3

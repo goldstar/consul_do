@@ -9,26 +9,31 @@ module ConsulDo
     @config ||= Config.new
   end
 
-  def self.http_client
-    if config.proxy.host && config.proxy.port
-      log "http_client", Net::HTTP.Proxy(config.proxy.host, config.proxy.port, config.proxy.user, config.proxy.password)
-    else
-      log "http_client", Net::HTTP
-    end
+  def self.configure!
+    @config = Config.new
+    yield config
+  end
+
+  def self.configure
+    yield config
+  end
+
+  def self.elect
+    @elect ||= Elect.new
   end
 
   def self.http_put(dest_url, data = nil)
     uri = URI.parse(dest_url)
-    request = http_client.new(uri.host, uri.port)
+    request = config.http_client.new(uri.host, uri.port)
     log "http_put", request.send_request('PUT', "#{ [uri.path, uri.query].compact.join('?') }", data.to_json, {'Content-type' => 'application/json'})
   end
 
   def self.http_get(dest_url)
-    log "http_get", http_client.get_response(URI(dest_url))
+    log "http_get", config.http_client.get_response(URI(dest_url))
   end
 
   def self.log(msg, retval)
-    puts [msg,retval.to_s].join(":\n  ") if config.opts['verbose']
+    puts [msg,retval.to_s].join(":\n  ") if config.verbose
     retval
   end
 end

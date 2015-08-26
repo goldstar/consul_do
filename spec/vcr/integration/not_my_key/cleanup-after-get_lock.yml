@@ -1,0 +1,263 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/create
+    body:
+      encoding: UTF-8
+      string: '{"name":"consul-do_not_my_key_session"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Aug 2015 00:16:06 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"ID":"e8282131-1052-2e8d-4660-d9a93de67c25"}'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:06 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/kv/service/not_my_key/leader?acquire=e8282131-1052-2e8d-4660-d9a93de67c25
+    body:
+      encoding: UTF-8
+      string: '{"updated":"2015-08-25 17:16:06 -0700"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Aug 2015 00:16:06 GMT
+      Content-Length:
+      - '5'
+    body:
+      encoding: UTF-8
+      string: 'false'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:06 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/destroy/e8282131-1052-2e8d-4660-d9a93de67c25
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Aug 2015 00:16:06 GMT
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: 'true'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:06 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/info/e8282131-1052-2e8d-4660-d9a93de67c25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '242080'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Wed, 26 Aug 2015 00:16:06 GMT
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: 'null'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/create
+    body:
+      encoding: UTF-8
+      string: '{"name":"consul-do_not_my_key_session"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Aug 2015 00:16:06 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"ID":"f50bda78-a4bb-a8d6-4a40-4393f49a2eb0"}'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/info/f50bda78-a4bb-a8d6-4a40-4393f49a2eb0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '242081'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Wed, 26 Aug 2015 00:16:07 GMT
+      Content-Length:
+      - '215'
+    body:
+      encoding: UTF-8
+      string: '[{"CreateIndex":242081,"ID":"f50bda78-a4bb-a8d6-4a40-4393f49a2eb0","Name":"consul-do_not_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+- request:
+    method: get
+    uri: http://localhost:8500/v1/session/node/consul-host1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Consul-Index:
+      - '242081'
+      X-Consul-Knownleader:
+      - 'true'
+      X-Consul-Lastcontact:
+      - '0'
+      Date:
+      - Wed, 26 Aug 2015 00:16:07 GMT
+      Content-Length:
+      - '1058'
+    body:
+      encoding: UTF-8
+      string: '[{"CreateIndex":235741,"ID":"80abe607-2ed8-fbd5-f4fb-2191530c3211","Name":"consul-do_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""},{"CreateIndex":241311,"ID":"5f88e568-bd12-846f-f3d2-b4db8fa4132d","Name":"consul-do_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""},{"CreateIndex":241597,"ID":"836f1df2-9704-c110-4c5d-05ecb7396fa0","Name":"consul-do_consul_do_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""},{"CreateIndex":241888,"ID":"2450d8ea-c4d0-e305-f5fa-26d029f750d1","Name":"consul-do_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""},{"CreateIndex":242081,"ID":"f50bda78-a4bb-a8d6-4a40-4393f49a2eb0","Name":"consul-do_not_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+- request:
+    method: put
+    uri: http://localhost:8500/v1/session/destroy/f50bda78-a4bb-a8d6-4a40-4393f49a2eb0
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Aug 2015 00:16:07 GMT
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: 'true'
+    http_version: 
+  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+recorded_with: VCR 2.9.3

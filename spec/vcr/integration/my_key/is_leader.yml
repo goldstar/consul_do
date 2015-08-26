@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:8500/v1/kv/service/not_my_key/leader
+    uri: http://localhost:8500/v1/kv/service/my_key/leader
     body:
       encoding: US-ASCII
       string: ''
@@ -21,23 +21,23 @@ http_interactions:
       Content-Type:
       - application/json
       X-Consul-Index:
-      - '241322'
+      - '241889'
       X-Consul-Knownleader:
       - 'true'
       X-Consul-Lastcontact:
       - '0'
       Date:
-      - Wed, 26 Aug 2015 00:16:07 GMT
+      - Wed, 26 Aug 2015 00:16:05 GMT
       Content-Length:
-      - '215'
+      - '211'
     body:
       encoding: UTF-8
-      string: '[{"CreateIndex":241322,"ModifyIndex":241322,"LockIndex":1,"Key":"service/not_my_key/leader","Flags":0,"Value":"eyJ1cGRhdGVkIjoiMjAxNS0wOC0yNSAxMTowMDozMyAtMDcwMCJ9","Session":"7cdf8866-53ec-b663-b0c6-e54a7226e3f1"}]'
+      string: '[{"CreateIndex":241889,"ModifyIndex":241889,"LockIndex":1,"Key":"service/my_key/leader","Flags":0,"Value":"eyJ1cGRhdGVkIjoiMjAxNS0wOC0yNSAxNjozNDoxNiAtMDcwMCJ9","Session":"2450d8ea-c4d0-e305-f5fa-26d029f750d1"}]'
     http_version: 
-  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/7cdf8866-53ec-b663-b0c6-e54a7226e3f1
+    uri: http://localhost:8500/v1/session/info/2450d8ea-c4d0-e305-f5fa-26d029f750d1
     body:
       encoding: US-ASCII
       string: ''
@@ -56,26 +56,26 @@ http_interactions:
       Content-Type:
       - application/json
       X-Consul-Index:
-      - '242082'
+      - '242070'
       X-Consul-Knownleader:
       - 'true'
       X-Consul-Lastcontact:
       - '0'
       Date:
-      - Wed, 26 Aug 2015 00:16:07 GMT
+      - Wed, 26 Aug 2015 00:16:05 GMT
       Content-Length:
-      - '215'
+      - '211'
     body:
       encoding: UTF-8
-      string: '[{"CreateIndex":241321,"ID":"7cdf8866-53ec-b663-b0c6-e54a7226e3f1","Name":"consul-do_not_my_key_session","Node":"consul-host2","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+      string: '[{"CreateIndex":241888,"ID":"2450d8ea-c4d0-e305-f5fa-26d029f750d1","Name":"consul-do_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
     http_version: 
-  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 - request:
     method: put
     uri: http://localhost:8500/v1/session/create
     body:
       encoding: UTF-8
-      string: '{"name":"consul-do_not_my_key_session"}'
+      string: '{"name":"consul-do_my_key_session"}'
     headers:
       Content-Type:
       - application/json
@@ -93,17 +93,17 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 Aug 2015 00:16:07 GMT
+      - Wed, 26 Aug 2015 00:16:05 GMT
       Content-Length:
       - '45'
     body:
       encoding: UTF-8
-      string: '{"ID":"307f76ce-0bae-74fb-e1a1-07e1628e5530"}'
+      string: '{"ID":"52431200-ac2c-4d21-05b5-366882d6e111"}'
     http_version: 
-  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/307f76ce-0bae-74fb-e1a1-07e1628e5530
+    uri: http://localhost:8500/v1/session/info/52431200-ac2c-4d21-05b5-366882d6e111
     body:
       encoding: US-ASCII
       string: ''
@@ -122,23 +122,23 @@ http_interactions:
       Content-Type:
       - application/json
       X-Consul-Index:
-      - '242083'
+      - '242071'
       X-Consul-Knownleader:
       - 'true'
       X-Consul-Lastcontact:
       - '0'
       Date:
-      - Wed, 26 Aug 2015 00:16:07 GMT
+      - Wed, 26 Aug 2015 00:16:05 GMT
       Content-Length:
-      - '215'
+      - '211'
     body:
       encoding: UTF-8
-      string: '[{"CreateIndex":242083,"ID":"307f76ce-0bae-74fb-e1a1-07e1628e5530","Name":"consul-do_not_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
+      string: '[{"CreateIndex":242071,"ID":"52431200-ac2c-4d21-05b5-366882d6e111","Name":"consul-do_my_key_session","Node":"consul-host1","Checks":["serfHealth"],"LockDelay":15000000000,"Behavior":"release","TTL":""}]'
     http_version: 
-  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 - request:
     method: put
-    uri: http://localhost:8500/v1/session/destroy/307f76ce-0bae-74fb-e1a1-07e1628e5530
+    uri: http://localhost:8500/v1/session/destroy/52431200-ac2c-4d21-05b5-366882d6e111
     body:
       encoding: UTF-8
       string: 'null'
@@ -159,12 +159,12 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 Aug 2015 00:16:07 GMT
+      - Wed, 26 Aug 2015 00:16:05 GMT
       Content-Length:
       - '4'
     body:
       encoding: UTF-8
       string: 'true'
     http_version: 
-  recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
+  recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 recorded_with: VCR 2.9.3

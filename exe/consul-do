@@ -2,10 +2,8 @@
 
 require 'consul_do'
 
-consul = ConsulDo::Elect.new
-
-consul.get_lock
-exit_code = (consul.is_leader?) ? 0 : 1
-consul.cleanup
+ConsulDo.elect.get_lock
+exit_code = (ConsulDo.elect.is_leader?) ? 0 : 1
+ConsulDo.elect.cleanup
 
 exit exit_code
