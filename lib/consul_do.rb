@@ -14,10 +14,6 @@ module ConsulDo
     yield config
   end
 
-  def self.configure
-    yield config
-  end
-
   def self.elect
     @elect ||= Elect.new
   end

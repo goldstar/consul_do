@@ -1,8 +1,10 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'consul_do'
 require 'support/constants_helper'
 require 'support/vcr_setup'
 
+require 'simplecov'
+SimpleCov.start
+require 'consul_do'
 
 RSpec.configure do |config|
   config.include ConstantsHelper
