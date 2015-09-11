@@ -6,12 +6,10 @@ module ConsulDo
     describe '#parse' do
 
       it 'should allow key to be specified' do
-
         overwrite_constant :ARGV, %w{ -k foo }
         config.parse
         expect(config.key).to eq('foo')
-        
-      end 
+      end
 
       it 'should default to localhost:8500' do
         overwrite_constant :ARGV, []
@@ -25,6 +23,18 @@ module ConsulDo
         config.parse
         expect(config.host).to eq('bar')
         expect(config.port).to eq('123')
+      end
+
+      it 'should default to use the anonymous token' do
+        overwrite_constant :ARGV, []
+        config.parse
+        expect(config.token).to eq('anonymous')
+      end
+
+      it 'should allow token to overridden' do
+        overwrite_constant :ARGV, %w{ -t foo }
+        config.parse
+        expect(config.token).to eq('foo')
       end
 
     end

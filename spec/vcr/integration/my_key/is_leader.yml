@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:8500/v1/kv/service/my_key/leader
+    uri: http://localhost:8500/v1/kv/service/my_key/leader?token=anonymous
     body:
       encoding: US-ASCII
       string: ''
@@ -37,7 +37,7 @@ http_interactions:
   recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/2450d8ea-c4d0-e305-f5fa-26d029f750d1
+    uri: http://localhost:8500/v1/session/info/2450d8ea-c4d0-e305-f5fa-26d029f750d1?token=anonymous
     body:
       encoding: US-ASCII
       string: ''
@@ -103,7 +103,7 @@ http_interactions:
   recorded_at: Wed, 26 Aug 2015 00:16:05 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/52431200-ac2c-4d21-05b5-366882d6e111
+    uri: http://localhost:8500/v1/session/info/52431200-ac2c-4d21-05b5-366882d6e111?token=anonymous
     body:
       encoding: US-ASCII
       string: ''
