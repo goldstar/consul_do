@@ -12,6 +12,7 @@ RSpec.configure do |config|
   config.before(:each) do
     overwrite_constant :ARGV, []
     ConsulDo.configure!{}
+    ConsulDo.elect!
   end
 
   config.after(:each) do

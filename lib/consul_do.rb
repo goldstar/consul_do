@@ -18,6 +18,10 @@ module ConsulDo
     @elect ||= Elect.new
   end
 
+  def self.elect!
+    @elect = Elect.new
+  end
+
   def self.http_put(dest_url, data = nil)
     uri = URI.parse(dest_url)
     request = config.http_client.new(uri.host, uri.port)
