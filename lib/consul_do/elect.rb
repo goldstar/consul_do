@@ -14,33 +14,28 @@ module ConsulDo
     def get_key
       url = "#{base_url}/v1/kv/service/#{ConsulDo.config.key}/leader?" + token_str
       response = ConsulDo.http_get(url)
-      case response
-      when Net::HTTPSuccess
-        ConsulDo.log "get_key", JSON.parse(response.body).first
-      else
-        ConsulDo.log "get_key", {}
+      ConsulDo.log "get_key", parse_json(response.body, [{}]).first
+    end
+
+    def parse_json(json_blob, default_value)
+      begin
+        JSON.parse(json_blob)
+      rescue JSON::ParserError, TypeError
+        default_value
       end
     end
 
     def get_session_info(session_id)
       url = "#{base_url}/v1/session/info/#{session_id}"
       response = ConsulDo.http_get(url)
-      if response.body == "null"
-        raise "Invalid Session"
-      else
-        ConsulDo.log "get_session_info", JSON.parse(response.body).first
-      end
+      ConsulDo.log "get_session_info", parse_json(response.body, []).first or raise "Invalid Session"
     end
 
     def create_session
       url = "#{base_url}/v1/session/create"
       response = ConsulDo.http_put(url, {'name' => ConsulDo.config.session_name})
-      case response
-      when Net::HTTPSuccess
-        ConsulDo.log "create_session", JSON.parse(response.body)['ID']
-      else
-        raise "Could not create session: #{response.code} - #{response.message} (#{response.body})"
-      end
+
+      ConsulDo.log "create_session", parse_json(response.body, {})['ID'] or raise "Could not create session: #{response.code} - #{response.message} (#{response.body})"
     end
 
     def session
@@ -63,7 +58,7 @@ module ConsulDo
     def delete_sessions
       url = "#{base_url}/v1/session/node/#{get_session_info(session)['Node']}"
       response = ConsulDo.http_get(url)
-      JSON.parse(response.body).each do |session_hash|
+      parse_json(response.body, []).each do |session_hash|
         if block_given?
           delete_session(session_hash['ID']) if yield session_hash['Name']
         else
