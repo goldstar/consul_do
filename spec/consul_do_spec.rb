@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'webmock/rspec'
 
 describe ConsulDo do
+  before(:all) { VCR.turn_off! }
+  after(:all) { VCR.turn_on! }
 
   it 'has a version number' do
     expect(ConsulDo::VERSION).not_to be nil
