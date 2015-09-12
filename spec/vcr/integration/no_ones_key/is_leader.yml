@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:8500/v1/kv/service/no_ones_key/leader?token=anonymous
+    uri: http://localhost:8500/v1/kv/service/no_ones_key/leader
     body:
       encoding: US-ASCII
       string: ''

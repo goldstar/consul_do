@@ -33,7 +33,7 @@ http_interactions:
   recorded_at: Wed, 26 Aug 2015 00:16:04 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/37198d55-dec5-fa87-fe75-30d8c055c0fe?token=anonymous
+    uri: http://localhost:8500/v1/session/info/37198d55-dec5-fa87-fe75-30d8c055c0fe
     body:
       encoding: US-ASCII
       string: ''

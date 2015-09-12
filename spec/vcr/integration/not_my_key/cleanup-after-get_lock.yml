@@ -95,7 +95,7 @@ http_interactions:
   recorded_at: Wed, 26 Aug 2015 00:16:06 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/e8282131-1052-2e8d-4660-d9a93de67c25?token=anonymous
+    uri: http://localhost:8500/v1/session/info/e8282131-1052-2e8d-4660-d9a93de67c25
     body:
       encoding: US-ASCII
       string: ''
@@ -161,7 +161,7 @@ http_interactions:
   recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/info/f50bda78-a4bb-a8d6-4a40-4393f49a2eb0?token=anonymous
+    uri: http://localhost:8500/v1/session/info/f50bda78-a4bb-a8d6-4a40-4393f49a2eb0
     body:
       encoding: US-ASCII
       string: ''
@@ -196,7 +196,7 @@ http_interactions:
   recorded_at: Wed, 26 Aug 2015 00:16:07 GMT
 - request:
     method: get
-    uri: http://localhost:8500/v1/session/node/consul-host1?token=anonymous
+    uri: http://localhost:8500/v1/session/node/consul-host1
     body:
       encoding: US-ASCII
       string: ''

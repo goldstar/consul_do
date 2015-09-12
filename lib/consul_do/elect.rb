@@ -12,7 +12,7 @@ module ConsulDo
     end
 
     def get_key
-      url = "#{base_url}/v1/kv/service/#{ConsulDo.config.key}/leader?token=#{ConsulDo.config.token}"
+      url = "#{base_url}/v1/kv/service/#{ConsulDo.config.key}/leader?" + token_str
       response = ConsulDo.http_get(url)
       case response
       when Net::HTTPSuccess
@@ -23,7 +23,7 @@ module ConsulDo
     end
 
     def get_session_info(session_id)
-      url = "#{base_url}/v1/session/info/#{session_id}?token=#{ConsulDo.config.token}"
+      url = "#{base_url}/v1/session/info/#{session_id}"
       response = ConsulDo.http_get(url)
       if response.body == "null"
         raise "Invalid Session"
@@ -34,7 +34,7 @@ module ConsulDo
 
     def create_session
       url = "#{base_url}/v1/session/create"
-      response = ConsulDo.http_put(url, {'name' => ConsulDo.config.session_name, 'token' => ConsulDo.config.token})
+      response = ConsulDo.http_put(url, {'name' => ConsulDo.config.session_name})
       case response
       when Net::HTTPSuccess
         ConsulDo.log "create_session", JSON.parse(response.body)['ID']
@@ -49,7 +49,7 @@ module ConsulDo
 
     def delete_session(session_id = session)
       url = "#{base_url}/v1/session/destroy/#{session_id}"
-      response = ConsulDo.http_put(url, {'token' => ConsulDo.config.token})
+      response = ConsulDo.http_put(url)
       case response
       when Net::HTTPSuccess
         @session = nil 
@@ -61,7 +61,7 @@ module ConsulDo
     end
 
     def delete_sessions
-      url = "#{base_url}/v1/session/node/#{get_session_info(session)['Node']}?token=#{ConsulDo.config.token}"
+      url = "#{base_url}/v1/session/node/#{get_session_info(session)['Node']}"
       response = ConsulDo.http_get(url)
       JSON.parse(response.body).each do |session_hash|
         if block_given?
@@ -72,9 +72,17 @@ module ConsulDo
       end
     end
 
+    def token_str
+      if ConsulDo.config.token
+        "&token=#{ConsulDo.config.token}"
+      else
+        ""
+      end
+    end
+
     def get_lock
-      url = "#{base_url}/v1/kv/service/#{ConsulDo.config.key}/leader?acquire=#{session}"
-      response = ConsulDo.http_put(url, {'updated' => Time.now, 'token' => ConsulDo.config.token})
+      url = "#{base_url}/v1/kv/service/#{ConsulDo.config.key}/leader?acquire=#{session}" + token_str
+      response = ConsulDo.http_put(url, {'updated' => Time.now})
       @session_has_lock = true if response.body == "true"
     end
 

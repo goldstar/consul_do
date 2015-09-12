@@ -25,13 +25,13 @@ module ConsulDo
         expect(config.port).to eq('123')
       end
 
-      it 'should default to use the anonymous token' do
+      it 'should default to no token' do
         overwrite_constant :ARGV, []
         config.parse
-        expect(config.token).to eq('anonymous')
+        expect(config.token).to eq(nil)
       end
 
-      it 'should allow token to overridden' do
+      it 'should allow token to be overridden' do
         overwrite_constant :ARGV, %w{ -t foo }
         config.parse
         expect(config.token).to eq('foo')

@@ -10,7 +10,6 @@ module ConsulDo
       @port = '8500'
       @key = 'consul_do'
       @http_proxy = ENV['http_proxy'] || ENV['HTTP_PROXY']
-      @token = 'anonymous'
       parse
     end
 
@@ -20,7 +19,7 @@ module ConsulDo
         opts.on("-k", "--key KEY=consul_do", "Coordination key"){ |v| self.key = v }
         opts.on("-h", "--consul-host HOST=localhost", "Consul hostname"){ |v| self.host = v }
         opts.on("-p", "--consul-port PORT=8500", "Consul port"){ |v| self.port = v }
-        opts.on("-t", "--token TOKEN=anonymous", "ACL Token"){ |v| self.token = v }
+        opts.on("-t", "--token TOKEN", "ACL Token"){ |v| self.token = v }
         opts.on("--http_proxy http://HOST:PORT", "Use supplied proxy instead of ENV "){ |v| self.http_proxy = v }
         opts.on("-v", "--verbose", "Consul port"){ |v| self.verbose = v }
       end.parse!
