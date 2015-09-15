@@ -27,16 +27,23 @@ Or install it yourself as:
 
     $ consul-do --help
     Usage: consul-do OPTIONS
-        -k, --key KEY                    Coordination key
-        -h, --consul-host HOST           Consul hostname
-        -p, --consul-port PORT           Consul port
+        -k, --key KEY=consul_do          Coordination key
+        -h, --consul-host HOST=localhost Consul hostname
+        -p, --consul-port PORT=8500      Consul port
+        -t, --token TOKEN                ACL Token
             --http_proxy http://HOST:PORT
                                          Use supplied proxy instead of ENV
+        -v, --verbose                    Verbose logging
 
     $ consul-do -k my_key && echo "do stuff"
     do stuff
 
     $ consul-do -k not_my_key && echo "don't do stuff"
+
+## Requirements
+
+* http access to a host running Consul Agent
+* Write access to the `service/` key [via ACL, token](https://www.consul.io/docs/internals/acl.html), or consul default wide-open permissions.
 
 ## Development
 
