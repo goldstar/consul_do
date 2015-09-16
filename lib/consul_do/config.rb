@@ -37,9 +37,13 @@ module ConsulDo
       "consul-do_#{key}_session"
     end
 
+    def net_http_proxy
+      Net::HTTP.Proxy(proxy.host, proxy.port, proxy.user, proxy.password)
+    end
+
     def http_client
-      if ConsulDo.config.proxy.host && ConsulDo.config.proxy.port
-        ConsulDo.log "http_client", Net::HTTP.Proxy(ConsulDo.config.proxy.host, ConsulDo.config.proxy.port, ConsulDo.config.proxy.user, ConsulDo.config.proxy.password)
+      if proxy.host && proxy.port
+        ConsulDo.log "http_client", net_http_proxy
       else
         ConsulDo.log "http_client", Net::HTTP
       end
