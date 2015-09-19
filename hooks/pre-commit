@@ -1,0 +1,21 @@
+#!/bin/sh
+
+cached=`git  grep --color=always --cached "192\.168\.\d+\.\d+\|10\.\d+\.\d+\.\d+\|\.goldstar\.com" -- $(git rev-parse --show-cdup)`
+tracked=`git grep --color=always          "192\.168\.\d+\.\d+\|10\.\d+\.\d+\.\d+\|\.goldstar\.com" -- $(git rev-parse --show-cdup)`
+
+results=$tracked
+[ -z "$results" ] && results=$cached
+if [ -n "$results" ]; then
+  cat <<\EOF
+ERROR: attemt to add a file containing sensitive data
+
+Please double check to make sure the following commits
+
+were really intentional. You can override this check with:
+
+  git commit --no-verify
+
+EOF
+  echo $results
+  exit 1
+fi
